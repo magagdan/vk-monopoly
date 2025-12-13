@@ -1249,7 +1249,7 @@ function popup(HTML, action, option) {
 
 	// Yes/No
 	if (option === "yes/no") {
-		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Yes\" id=\"popupyes\" /><input type=\"button\" value=\"No\" id=\"popupno\" /></div>";
+		document.getElementById("popuptext").innerHTML += "<div><input type=\"button\" value=\"Да\" id=\"popupyes\" /><input type=\"button\" value=\"Нет\" id=\"popupno\" /></div>";
 
 		$("#popupyes, #popupno").on("click", function() {
 			$("#popupwrap").hide();
@@ -1260,7 +1260,7 @@ function popup(HTML, action, option) {
 
 	// Ok
 	} else if (option !== "blank") {
-		$("#popuptext").append("<div><input type='button' value='OK' id='popupclose' /></div>");
+		$("#popuptext").append("<div><input type='button' value='ОК' id='popupclose' /></div>");
 		$("#popupclose").focus();
 
 		$("#popupclose").on("click", function() {
@@ -1803,13 +1803,13 @@ function subtractamount(amount, cause) {
 function gotojail() {
 	var p = player[turn];
 	addAlert(p.name + " was sent directly to jail.");
-	document.getElementById("landed").innerHTML = "You are in jail.";
+	document.getElementById("landed").innerHTML = "Вы в тюрьме.";
 
 	p.jail = true;
 	doublecount = 0;
 
-	document.getElementById("nextbutton").value = "End turn";
-	document.getElementById("nextbutton").title = "End turn and advance to the next player.";
+	document.getElementById("nextbutton").value = "Завершить ход";
+	document.getElementById("nextbutton").title = "Завершить ход и перейти к следующему игроку.";
 
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
@@ -1880,7 +1880,7 @@ function advance(destination, pass) {
 		} else {
 			p.position = pass;
 			p.money += 200;
-			addAlert(p.name + " collected a $200 salary for passing GO.");
+			addAlert(p.name + " получил(а) $200 за проход через СТАРТ.");
 		}
 	}
 	if (p.position < destination) {
@@ -1888,7 +1888,7 @@ function advance(destination, pass) {
 	} else {
 		p.position = destination;
 		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+		addAlert(p.name + " получил(а) $200 за проход через СТАРТ.");
 	}
 
 	land();
@@ -1904,7 +1904,7 @@ function advanceToNearestUtility() {
 	} else if (p.position >= 28) {
 		p.position = 12;
 		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+		addAlert(p.name + " получил(а) $200 за проход через СТАРТ.");
 	}
 
 	land(true);
@@ -1922,7 +1922,7 @@ function advanceToNearestRailroad() {
 	} else if (p.position >= 35) {
 		p.position = 5;
 		p.money += 200;
-		addAlert(p.name + " collected a $200 salary for passing GO.");
+		addAlert(p.name + " получил(а) $200 за проход через СТАРТ.");
 	}
 
 	land(true);
@@ -2289,9 +2289,9 @@ function land(increasedRent) {
 	var die2 = game.getDie(2);
 
 	$("#landed").show();
-	document.getElementById("landed").innerHTML = "You landed on " + s.name + ".";
+	document.getElementById("landed").innerHTML = "Вы попали на клетку: " + s.name + ".";
 	s.landcount++;
-	addAlert(p.name + " landed on " + s.name + ".");
+	addAlert(p.name + " попал(а) на клетку " + s.name + ".");
 
 	// Allow player to buy the property on which he landed.
 	if (s.price !== 0 && s.owner === 0) {
@@ -2424,8 +2424,8 @@ function roll() {
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
 	}
-	document.getElementById("nextbutton").value = "End turn";
-	document.getElementById("nextbutton").title = "End turn and advance to the next player.";
+	document.getElementById("nextbutton").value = "Завершить ход";
+	document.getElementById("nextbutton").title = "Завершить ход и перейти к следующему игроку.";
 
 	game.rollDice();
 	var die1 = game.getDie(1);
@@ -2443,19 +2443,19 @@ function roll() {
 		updateDice(die1, die2);
 
 		if (doublecount < 3) {
-			document.getElementById("nextbutton").value = "Roll again";
-			document.getElementById("nextbutton").title = "You threw doubles. Roll again.";
+			document.getElementById("nextbutton").value = "Бросить ещё раз";
+			document.getElementById("nextbutton").title = "Выпал дубль. Бросьте ещё раз.";
 
 		// If player rolls doubles three times in a row, send him to jail
 		} else if (doublecount === 3) {
 			p.jail = true;
 			doublecount = 0;
-			addAlert(p.name + " rolled doubles three times in a row.");
+			addAlert(p.name + " выбросил(а) дубль три раза подряд.");
 			updateMoney();
 
 
 			if (p.human) {
-				popup("You rolled doubles three times in a row. Go to jail.", gotojail);
+				popup("Вы выбросили дубль три раза подряд. Отправляйтесь в тюрьму.", gotojail);
 			} else {
 				gotojail();
 			}
@@ -2463,8 +2463,8 @@ function roll() {
 			return;
 		}
 	} else {
-		document.getElementById("nextbutton").value = "End turn";
-		document.getElementById("nextbutton").title = "End turn and advance to the next player.";
+		document.getElementById("nextbutton").value = "Завершить ход";
+		document.getElementById("nextbutton").title = "Завершить ход и перейти к следующему игроку.";
 		doublecount = 0;
 	}
 
@@ -2486,14 +2486,14 @@ function roll() {
 			p.position = 10 + die1 + die2;
 			doublecount = 0;
 
-			addAlert(p.name + " rolled doubles to get out of jail.");
+			addAlert(p.name + " выбросил(а) дубль и вышел(ла) из тюрьмы.");
 
 			land();
 		} else {
 			if (p.jailroll === 3) {
 
 				if (p.human) {
-					popup("<p>You must pay the $50 fine.</p>", function() {
+					popup("<p>Нужно заплатить штраф $50.</p>", function() {
 						payfifty();
 						player[turn].position=10 + die1 + die2;
 						land();
@@ -2505,7 +2505,7 @@ function roll() {
 				}
 			} else {
 				$("#landed").show();
-				document.getElementById("landed").innerHTML = "You are in jail.";
+				document.getElementById("landed").innerHTML = "Вы в тюрьме.";
 
 				if (!p.human) {
 					popup(p.AI.alertList, game.next);
@@ -2525,7 +2525,7 @@ function roll() {
 		if (p.position >= 40) {
 			p.position -= 40;
 			p.money += 200;
-			addAlert(p.name + " collected a $200 salary for passing GO.");
+			addAlert(p.name + " получил(а) $200 за проход через СТАРТ.");
 		}
 
 		land();
@@ -2547,7 +2547,7 @@ function play() {
 
 	document.getElementById("pname").innerHTML = p.name;
 
-	addAlert("It is " + p.name + "'s turn.");
+	addAlert("Ход: " + p.name + ".");
 
 	// Check for bankruptcy.
 	p.pay(0, p.creditor);
@@ -2559,18 +2559,18 @@ function play() {
 	if (p.human) {
 		document.getElementById("nextbutton").focus();
 	}
-	document.getElementById("nextbutton").value = "Roll Dice";
-	document.getElementById("nextbutton").title = "Roll the dice and move your token accordingly.";
+	document.getElementById("nextbutton").value = "Бросить кубики";
+	document.getElementById("nextbutton").title = "Бросить кубики и передвинуть фишку.";
 
 	$("#die0").hide();
 	$("#die1").hide();
 
 	if (p.jail) {
 		$("#landed").show();
-		document.getElementById("landed").innerHTML = "You are in jail.<input type='button' title='Pay $50 fine to get out of jail immediately.' value='Pay $50 fine' onclick='payfifty();' />";
+		document.getElementById("landed").innerHTML = "Вы в тюрьме.<input type='button' title='Заплатить штраф $50 и выйти из тюрьмы сразу.' value='Заплатить $50' onclick='payfifty();' />";
 
 		if (p.communityChestJailCard || p.chanceJailCard) {
-			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Use &quot;Get Out of Jail Free&quot; card.' onclick='useJailCard();' value='Use Card' />";
+			document.getElementById("landed").innerHTML += "<input type='button' id='gojfbutton' title='Use &quot;Get Out of Jail Free&quot; card.' onclick='useJailCard();' value='Использовать карту' />";
 		}
 
 		document.getElementById("nextbutton").title = "Roll the dice. If you throw doubles, you will get out of jail.";
