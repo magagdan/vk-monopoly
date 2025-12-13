@@ -10,7 +10,36 @@
 </script>
 	<title>Monopoly</title>
 	<meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
+<script>
+  // Простейшая локализация интерфейса на русский
+  const RU_TEXTS = {
+    'Roll Dice': 'Бросить кубик',
+    'Buy Property': 'Купить',
+    'Do not buy': 'Не покупать',
+    'End Turn': 'Закончить ход',
+    'Pay Rent': 'Заплатить аренду',
+    'You have': 'У тебя',
+    'Money': 'Деньги',
+    'Player': 'Игрок',
+    'Turn': 'Ход',
+    'Bankrupt': 'Банкрот',
+    'Game Over': 'Игра окончена',
+    'Start Game': 'Начать игру'
+  };
 
+  function translateToRu() {
+    document.querySelectorAll('button, div, span, p').forEach(el => {
+      const text = el.innerText?.trim();
+      if (RU_TEXTS[text]) {
+        el.innerText = RU_TEXTS[text];
+      }
+    });
+  }
+
+  // Переводим сразу и после каждого хода
+  window.addEventListener('load', translateToRu);
+  setInterval(translateToRu, 1000);
+</script>
 	<script src="lib/jquery.min.js"></script>
 	<script type="text/javascript" src="classicedition.js"></script>
 	<!-- Comment out the previous line and uncomment the next one to enable the New York City Edition -->
