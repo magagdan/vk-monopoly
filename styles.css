@@ -1,7 +1,7 @@
 body {
-	background: #FFFFFF;
-	margin: 0px;
-	min-width: 1075px;
+  margin: 0px;
+  min-width: 1075px;
+  background: radial-gradient(1200px 600px at center, #2c3e50, #0f1720);
 }
 
 td {
@@ -822,4 +822,11 @@ td {
 	top: 0px;
 	width: 15px;
 
+}
+#board {
+  border-radius: 16px;
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  background: #f6f7f9;
 }
